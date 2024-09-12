@@ -1,20 +1,18 @@
 import { Button } from "../button/Button";
 import style from "./Form.module.css";
-import React, { useState } from "react";
-export function Form() {
-  let [lightboxON, setlightboxON] = useState("false");
+import React, { useState, useContext } from "react";
 
-  function handleLightboxON() {
-    setlightboxON((lightboxON = "true"));
-  }
+import { DataContext } from "../dataContext/DataContext";
+export function Form() {
+  const { headerData, setHeaderData } = useContext(DataContext);
+
   function handleLightboxOFF() {
-    setlightboxON((lightboxON = "false"));
+    setHeaderData("false");
   }
 
   return (
     <>
-      <button onClick={handleLightboxON}>Click Me</button>
-      <div className={style.lightbox} data-visible={lightboxON}>
+      <div className={style.lightbox} data-visible={headerData}>
         <div className={style.background}></div>
         <form className={style.formCreate}>
           <fieldset className={style.formRow}>
@@ -52,7 +50,7 @@ export function Form() {
             <svg
               stroke="currentColor"
               fill="currentColor"
-              stroke-width="0"
+              strokeWidth="0"
               viewBox="0 0 448 512"
               height="200px"
               width="200px"
