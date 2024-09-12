@@ -1,0 +1,58 @@
+.task {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 0.1rem solid #ccc;
+  box-shadow: 0 0.3rem 0.6rem #0003;
+  border-radius: 0.5rem;
+}
+.header {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+.more {
+  width: 1.5rem;
+  height: 1.5rem;
+  line-height: 1rem;
+  text-align: center;
+  background-color: #fff;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  user-select: none;
+  z-index: 3;
+}
+.more:hover {
+  background-color: #ccc;
+}
+.moreActions {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 1.5rem;
+  right: 0;
+  z-index: 4;
+  padding: 0.5em 0;
+  background-color: #eee;
+  box-shadow: 0 0.2rem 0.5rem #0005;
+}
+.button {
+  background-color: transparent;
+  text-align: left;
+  border: none;
+  font-size: 1rem;
+  line-height: 1em;
+  padding: 0.5em 1em;
+}
+.button:hover {
+  background-color: #ddd;
+}
+.moreActions[data-visible="true"] {
+  display: flex;
+}
+.content {
+}
+.footer {
+}

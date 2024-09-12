@@ -7,3 +7,6 @@ body * {
 body {
   font-family: sans-serif;
 }
+main {
+  min-height: calc(100vh - 9rem);
+}
