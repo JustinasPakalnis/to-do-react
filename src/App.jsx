@@ -8,12 +8,10 @@ export function App() {
   const [headerData, setHeaderData] = useState("false");
 
   return (
-    <>
-      <DataContext.Provider value={{ headerData, setHeaderData }}>
-        <Header />
-        <Main />
-        <Footer />
-      </DataContext.Provider>
-    </>
+    <DataContext.Provider value={{ headerData, setHeaderData }}>
+      <Header />
+      <Main />
+      <Footer />
+    </DataContext.Provider>
   );
 }
