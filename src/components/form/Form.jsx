@@ -1,25 +1,50 @@
+import { useState } from "react";
 import { Button } from "../button/Button";
 import style from "./Form.module.css";
-import React, { useState, useContext } from "react";
 
-import { DataContext } from "../dataContext/DataContext";
-export function Form() {
-  const { headerData, setHeaderData } = useContext(DataContext);
+export function Form({ lightboxVisible, addTask }) {
+  const defaultText = "";
+  const defaultDeadline = "2024-09-10";
+  const defaultColor = "#ff0000";
+  const [text, setText] = useState(defaultText);
+  const [deadline, setDeadline] = useState(defaultDeadline);
+  const [color, setColor] = useState(defaultColor);
 
-  function handleLightboxOFF() {
-    setHeaderData("false");
+  function handleTextChange(e) {
+    setText(e.target.value);
   }
-
+  function handleDeadlineChange(e) {
+    setDeadline(e.target.value);
+  }
+  function handleColorChange(e) {
+    setColor(e.target.value);
+  }
+  function handleReset() {
+    setText(defaultText);
+    setDeadline(defaultDeadline);
+    setColor(defaultColor);
+  }
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    addTask(task, deadline, color);
+  }
   return (
     <>
-      <div className={style.lightbox} data-visible={headerData}>
+      <div className={style.lightbox} data-visible={lightboxVisible}>
         <div className={style.background}></div>
-        <form className={style.formCreate}>
+        <form onSubmit={handleFormSubmit} className={style.formCreate}>
           <fieldset className={style.formRow}>
             <label className={style.label} htmlFor="task">
               Task
             </label>
-            <input className={style.input} id="task" type="text" required />
+            <input
+              value={text}
+              onChange={handleTextChange}
+              className={style.input}
+              id="task"
+              type="text"
+              required
+            />
           </fieldset>
           <div className={style.columns}>
             <fieldset className={style.formRow}>
@@ -27,6 +52,8 @@ export function Form() {
                 Deadline
               </label>
               <input
+                value={deadline}
+                onChange={handleDeadlineChange}
                 className={style.input}
                 id="deadline"
                 type="date"
@@ -39,14 +66,26 @@ export function Form() {
               <label className={style.label} htmlFor="color">
                 Color
               </label>
-              <input className={style.input} id="color" type="color" required />
+              <input
+                value={color}
+                onChange={handleColorChange}
+                className={style.input}
+                id="color"
+                type="color"
+                required
+              />
             </fieldset>
           </div>
           <fieldset className={style.formRow + " " + style.columns}>
-            <Button text="Reset" type="reset" size="small" />
+            <Button
+              text="Reset"
+              type="reset"
+              size="small"
+              onClick={handleReset}
+            />
             <Button text="Create" type="submit" size="small" />
           </fieldset>
-          <div onClick={handleLightboxOFF} className={style.close}>
+          <div className={style.close}>
             <svg
               stroke="currentColor"
               fill="currentColor"
