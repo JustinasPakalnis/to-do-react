@@ -1,11 +1,17 @@
 import style from "./TaskCard.module.css";
+import React, { useState } from "react";
+export function TaskCard({ id, menuClick, isOpen }) {
+  function handleClick() {
+    menuClick(id);
+  }
 
-export function TaskCard() {
   return (
     <li className={style.task}>
       <div className={style.header}>
-        <div className={style.more}>...</div>
-        <div className={style.moreActions} data-visible="false">
+        <div role="button" onClick={handleClick} className={style.more}>
+          ...
+        </div>
+        <div className={style.moreActions} data-visible={isOpen}>
           <button className={style.button} type="button">
             Move up
           </button>
