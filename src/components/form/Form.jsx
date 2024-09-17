@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button } from "../button/Button";
 import style from "./Form.module.css";
+import { GlobalContext } from "../../context/GlobalContext";
 
-export function Form({ lightboxVisible, addTask }) {
+export function Form() {
+  const { lightboxVisible, hideLightbox, addTask } = useContext(GlobalContext);
   const defaultText = "";
   const defaultDeadline = "2024-09-10";
   const defaultColor = "#ff0000";
@@ -31,7 +33,7 @@ export function Form({ lightboxVisible, addTask }) {
   return (
     <>
       <div className={style.lightbox} data-visible={lightboxVisible}>
-        <div className={style.background}></div>
+        <div onClick={hideLightbox} className={style.background}></div>
         <form onSubmit={handleFormSubmit} className={style.formCreate}>
           <fieldset className={style.formRow}>
             <label className={style.label} htmlFor="task">
@@ -85,7 +87,7 @@ export function Form({ lightboxVisible, addTask }) {
             />
             <Button text="Create" type="submit" size="small" />
           </fieldset>
-          <div className={style.close}>
+          <div onClick={hideLightbox} className={style.close}>
             <svg
               stroke="currentColor"
               fill="currentColor"
