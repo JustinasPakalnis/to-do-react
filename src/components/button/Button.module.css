@@ -1,0 +1,40 @@
+.btn {
+  padding: 0.8em 1em;
+  background-color: #36f;
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1em;
+  border: none;
+  border-radius: 0.3em;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+.btn:hover {
+  background-color: rgb(44, 90, 218);
+  padding: 0.9em 1.1em;
+}
+.btn > .icon {
+}
+.btn > .text {
+}
+.btn.small {
+  padding: 0.7em 0.9em;
+  font-size: 0.9rem;
+  line-height: 1em;
+}
+.btn.big {
+  padding: 0.9em 1.2em;
+  font-size: 1.1rem;
+  line-height: 1em;
+  border-radius: 0.4em;
+}
+
+.btn > .icon + .text {
+  display: none;
+}
+
+@media (min-width: 28rem) {
+  .btn > .icon + .text {
+    display: inline;
+  }
+}

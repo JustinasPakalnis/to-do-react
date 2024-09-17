@@ -1,0 +1,29 @@
+.stats {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: auto;
+}
+.detail {
+  display: flex;
+  align-items: baseline;
+  gap: 0.2rem;
+}
+.label {
+  display: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+.value {
+  font-family: Playwrite, cursive;
+  font-weight: normal;
+  font-size: 1rem;
+}
+
+@media (min-width: 48rem) {
+  .label {
+    display: block;
+  }
+}

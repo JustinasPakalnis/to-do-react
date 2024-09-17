@@ -1,37 +1,24 @@
-import logo from "../../assets/logo.png";
-import headerStyle from "./Header.module.css";
-import buttonStyle from "./Button.module.css";
+import logo from "../../assets/logo.ico";
+import { GlobalContext } from "../../context/GlobalContext";
+import { Button } from "../button/Button";
+import { Stats } from "../stats/Stats";
+import style from "./Header.module.css";
+import React, { useContext } from "react";
+import { LightboxContext } from "../../context/LightboxContext";
 
 export function Header() {
+  const { showLightbox } = useContext(LightboxContext);
+  const { updateOptionsMenuStatus } = useContext(GlobalContext);
+
   return (
-    <header className={headerStyle.mainHeader}>
-      <img className={headerStyle.logo} src={logo} alt="Logo" />
-      <div className={headerStyle.stats}>
-        <div className={headerStyle.detail}>
-          <span className={headerStyle.label}>Viso:</span>
-          <span className={headerStyle.value}>0</span>
-        </div>
-        <div className={headerStyle.detail}>
-          <span className={headerStyle.label}>Todo:</span>
-          <span className={headerStyle.value}>0</span>
-        </div>
-        <div className={headerStyle.detail}>
-          <span className={headerStyle.label}>In-progress:</span>
-          <span className={headerStyle.value}>0</span>
-        </div>
-        <div className={headerStyle.detail}>
-          <span className={headerStyle.label}>Done:</span>
-          <span className={headerStyle.value}>0</span>
-        </div>
-        <div className={headerStyle.detail}>
-          <span className={headerStyle.label}>Deleted:</span>
-          <span className={headerStyle.value}>0</span>
-        </div>
-      </div>
-      <button className={buttonStyle.btn}>
-        <span className={buttonStyle.icon}>+</span>
-        <span className={buttonStyle.text}>New task</span>
-      </button>
+    <header
+      onClick={() => updateOptionsMenuStatus(-1)}
+      className={style.mainHeader}
+    >
+      <img className={style.logo} src={logo} alt="Logo" />
+      <Stats />
+
+      <Button text="New task" icon="+" onClick={showLightbox} />
     </header>
   );
 }
