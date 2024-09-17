@@ -2,11 +2,14 @@ import { useContext, useState } from "react";
 import { Button } from "../button/Button";
 import style from "./Form.module.css";
 import { GlobalContext } from "../../context/GlobalContext";
+import { LightboxContext } from "../../context/LightboxContext";
 
 export function Form() {
-  const { lightboxVisible, hideLightbox, addTask } = useContext(GlobalContext);
+  const { lightboxVisible, hideLightbox } = useContext(LightboxContext);
+  const { addTask } = useContext(GlobalContext);
+
   const defaultText = "";
-  const defaultDeadline = "2024-09-10";
+  const defaultDeadline = "2024-09-03";
   const defaultColor = "#ff0000";
   const [text, setText] = useState(defaultText);
   const [deadline, setDeadline] = useState(defaultDeadline);
@@ -15,20 +18,24 @@ export function Form() {
   function handleTextChange(e) {
     setText(e.target.value);
   }
+
   function handleDeadlineChange(e) {
     setDeadline(e.target.value);
   }
+
   function handleColorChange(e) {
     setColor(e.target.value);
   }
+
   function handleReset() {
     setText(defaultText);
     setDeadline(defaultDeadline);
     setColor(defaultColor);
   }
+
   function handleFormSubmit(e) {
     e.preventDefault();
-    addTask(task, deadline, color);
+    addTask(text, deadline, color);
   }
   return (
     <>

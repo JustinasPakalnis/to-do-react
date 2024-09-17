@@ -1,9 +1,13 @@
 import style from "./TaskCard.module.css";
-import React, { useState } from "react";
-export function TaskCard({ id, showOptionsMenu, cardMenuVisibleById }) {
+import { useContext } from "react";
+import { GlobalContext } from "../../context/GlobalContext";
+
+export function TaskCard({ task }) {
+  const { optionsMenuOpen, updateOptionsMenuStatus } =
+    useContext(GlobalContext);
   function handleOptionsMenuClick(event) {
     event.stopPropagation();
-    showOptionsMenu(id);
+    updateOptionsMenuStatus(task.id);
   }
 
   return (
@@ -18,7 +22,7 @@ export function TaskCard({ id, showOptionsMenu, cardMenuVisibleById }) {
         </div>
         <div
           className={style.moreActions}
-          data-visible={id === cardMenuVisibleById}
+          data-visible={task.id === optionsMenuOpen}
         >
           <button className={style.button} type="button">
             Move up
@@ -40,10 +44,10 @@ export function TaskCard({ id, showOptionsMenu, cardMenuVisibleById }) {
         </div>
       </div>
       <div className={style.content}>
-        <p>Uzduoties tekstas</p>
+        <p>{task.text}</p>
       </div>
       <div className={style.footer}>
-        <p>Deadline: 2024-09-04</p>
+        <p>Deadline: {task.deadline}</p>
       </div>
     </li>
   );
