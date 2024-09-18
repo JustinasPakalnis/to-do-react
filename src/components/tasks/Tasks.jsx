@@ -10,18 +10,32 @@ export function Tasks() {
       <div className={style.column}>
         <h2 className={style.title}>Todo</h2>
         <ul className={style.list}>
-          {tasks.map((task) => (
-            <TaskCard key={task.id} task={task} />
-          ))}
+          {tasks
+            .filter((task) => task.status === "todo")
+            .map((task) => (
+              <TaskCard key={task.id} task={task} />
+            ))}
         </ul>
       </div>
       <div className={style.column}>
         <h2 className={style.title}>In progress</h2>
-        <ul className={style.list}></ul>
+        <ul className={style.list}>
+          {tasks
+            .filter((task) => task.status === "in-progress")
+            .map((task) => (
+              <TaskCard key={task.id} task={task} />
+            ))}
+        </ul>
       </div>
       <div className={style.column}>
         <h2 className={style.title}>Done</h2>
-        <ul className={style.list}></ul>
+        <ul className={style.list}>
+          {tasks
+            .filter((task) => task.status === "done")
+            .map((task) => (
+              <TaskCard key={task.id} task={task} />
+            ))}
+        </ul>
       </div>
     </section>
   );

@@ -3,11 +3,19 @@ import { useContext } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
 
 export function TaskCard({ task }) {
-  const { optionsMenuOpen, updateOptionsMenuStatus } =
-    useContext(GlobalContext);
+  const {
+    optionsMenuOpen,
+    updateOptionsMenuStatus,
+    remoweTask,
+    changeTaskStatus,
+  } = useContext(GlobalContext);
   function handleOptionsMenuClick(event) {
     event.stopPropagation();
     updateOptionsMenuStatus(task.id);
+  }
+
+  function handleDeleteClick() {
+    remoweTask(task.id);
   }
 
   return (
@@ -31,14 +39,33 @@ export function TaskCard({ task }) {
             Move down
           </button>
           <hr />
-          <button className={style.button} type="button">
+          <button
+            onClick={() => changeTaskStatus(task.id, "todo")}
+            className={style.button}
+            type="button"
+          >
+            Todo
+          </button>
+          <button
+            onClick={() => changeTaskStatus(task.id, "in-progress")}
+            className={style.button}
+            type="button"
+          >
             In progress
           </button>
-          <button className={style.button} type="button">
+          <button
+            onClick={() => changeTaskStatus(task.id, "done")}
+            className={style.button}
+            type="button"
+          >
             Done
           </button>
           <hr />
-          <button className={style.button} type="button">
+          <button
+            onClick={handleDeleteClick}
+            className={style.button}
+            type="button"
+          >
             Delete
           </button>
         </div>
